@@ -38,7 +38,7 @@ public class FilmController {
 
     @GetMapping
     public Collection<Film> getAllFilms() {
-        return films.values();
+        return new ArrayList<>(films.values());
     }
 
     private void validateFilm(Film film) {
