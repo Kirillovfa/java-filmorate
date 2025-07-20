@@ -31,7 +31,7 @@ public class UserController {
 
     @GetMapping
     public List<User> getAll() {
-        return userService.getFriends(0);
+        return userService.getAll();
     }
 
     @GetMapping("/{id}")

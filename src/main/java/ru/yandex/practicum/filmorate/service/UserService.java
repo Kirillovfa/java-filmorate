@@ -93,4 +93,8 @@ public class UserService {
             throw new ValidationException("Дата рождения не может быть в будущем");
         }
     }
+
+    public List<User> getAll() {
+        return userStorage.findAll();
+    }
 }
