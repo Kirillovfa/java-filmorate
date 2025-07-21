@@ -70,10 +70,13 @@ public class FilmService {
     }
 
     private void checkUserExists(int id) {
-        if (!userStorage.findAll().contains(id)) {
-            return;
+        if (userStorage instanceof ru.yandex.practicum.filmorate.storage.user.InMemoryUserStorage inMemoryUserStorage) {
+            if (!inMemoryUserStorage.getUserMap().containsKey(id)) {
+                throw new NoSuchElementException("User not found with id: " + id);
+            }
+        } else {
+            throw new UnsupportedOperationException("Unknown UserStorage implementation");
         }
-        throw new NoSuchElementException("User not found with id: " + id);
     }
 
     private void validate(Film film) {

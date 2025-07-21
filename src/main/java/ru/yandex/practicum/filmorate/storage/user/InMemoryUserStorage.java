@@ -40,4 +40,8 @@ public class InMemoryUserStorage implements UserStorage {
     public List<User> findAll() {
         return new ArrayList<>(users.values());
     }
+
+    public Map<Integer, User> getUserMap() {
+        return users;
+    }
 }
