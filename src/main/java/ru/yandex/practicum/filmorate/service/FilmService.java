@@ -70,7 +70,7 @@ public class FilmService {
     }
 
     private void checkUserExists(int id) {
-        if (userStorage.findById(id).isEmpty()) {
+        if (userStorage.findAll().contains(id)) {
             throw new NoSuchElementException("User not found with id: " + id);
         }
     }

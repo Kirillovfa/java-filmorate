@@ -36,8 +36,8 @@ public class UserService {
         User user = getUserOrThrow(userId);
         User friend = getUserOrThrow(friendId);
 
-        user.getFriends().add(friendId);
-        friend.getFriends().add(userId);
+        user.getFriendIds().add(friendId);
+        friend.getFriendIds().add(userId);
 
         userStorage.update(user);
         userStorage.update(friend);
@@ -49,8 +49,8 @@ public class UserService {
         User user = getUserOrThrow(userId);
         User friend = getUserOrThrow(friendId);
 
-        user.getFriends().remove(friendId);
-        friend.getFriends().remove(userId);
+        user.getFriendIds().remove(friendId);
+        friend.getFriendIds().remove(userId);
 
         userStorage.update(user);
         userStorage.update(friend);
@@ -60,7 +60,7 @@ public class UserService {
 
     public List<User> getFriends(int userId) {
         User user = getUserOrThrow(userId);
-        return user.getFriends().stream()
+        return user.getFriendIds().stream()
                 .map(this::getUserOrThrow)
                 .collect(Collectors.toList());
     }
@@ -69,8 +69,8 @@ public class UserService {
         User user = getUserOrThrow(userId);
         User other = getUserOrThrow(otherId);
 
-        Set<Integer> commonIds = new HashSet<>(user.getFriends());
-        commonIds.retainAll(other.getFriends());
+        Set<Integer> commonIds = new HashSet<>(user.getFriendIds());
+        commonIds.retainAll(other.getFriendIds());
 
         return commonIds.stream()
                 .map(this::getUserOrThrow)
